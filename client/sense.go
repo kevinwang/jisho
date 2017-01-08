@@ -1,10 +1,11 @@
 package client
 
 import (
+	"fmt"
 	"strings"
 )
 
-func (s Sense) NotesString() string {
+func (s *Sense) NotesString() string {
 	var notes []string
 
 	if len(s.Tags) != 0 {
@@ -33,6 +34,14 @@ func (s Sense) NotesString() string {
 
 	if len(s.Info) != 0 {
 		notes = append(notes, strings.Join(s.Info, ", "))
+	}
+
+	if len(s.Source) != 0 {
+		sources := make([]string, len(s.Source))
+		for i, s := range s.Source {
+			sources[i] = fmt.Sprintf("From %s %s", s.Language, s.Word)
+		}
+		notes = append(notes, strings.Join(sources, ", "))
 	}
 
 	return strings.Join(notes, ", ")
