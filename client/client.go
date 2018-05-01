@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	apiSearchEndpoint = "http://jisho.org/api/v1/search/words?keyword="
+	apiSearchEndpoint = "https://jisho.org/api/v1/search/words?keyword="
 )
 
 func Search(query string) ([]Word, error) {
